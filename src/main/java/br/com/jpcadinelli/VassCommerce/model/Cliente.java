@@ -6,7 +6,7 @@ public class Cliente {
     private Long id;
     private String cpf;
     private String fotoUrl;
-    private Date DataNascimento;
+    private Date dataNascimento;
 
     public Cliente() {}
 
@@ -14,7 +14,7 @@ public class Cliente {
         this.id = id;
         this.cpf = cpf;
         this.fotoUrl = fotoUrl;
-        DataNascimento = dataNascimento;
+        this.dataNascimento = dataNascimento;
     }
 
     public Long getId() {
@@ -42,10 +42,10 @@ public class Cliente {
     }
 
     public Date getDataNascimento() {
-        return DataNascimento;
+        return this.dataNascimento;
     }
 
     public void setDataNascimento(Date dataNascimento) {
-        DataNascimento = dataNascimento;
+        this.dataNascimento = dataNascimento;
     }
 }

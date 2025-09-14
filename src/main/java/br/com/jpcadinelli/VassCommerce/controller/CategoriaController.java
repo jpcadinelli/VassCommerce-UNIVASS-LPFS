@@ -13,9 +13,11 @@ import java.util.List;
 public class CategoriaController {
 
     private final CategoriaService categoriaService;
+    private final ProdutoService produtoService;
 
-    public CategoriaController(CategoriaService categoriaService) {
+    public CategoriaController(CategoriaService categoriaService, ProdutoService produtoService) {
         this.categoriaService = categoriaService;
+        this.produtoService = produtoService;
     }
 
     // GET /categoria → listar todas
@@ -25,5 +27,11 @@ public class CategoriaController {
             return categoriaService.buscarPorNome(nome);
         }
         return categoriaService.listarTodas();
+    }
+
+    // GET /categoria/{idcategoria}/produto → listar produtos da categoria
+    @GetMapping("/{idcategoria}/produto")
+    public List<Produto> listarProdutosPorCategoria(@PathVariable Long idcategoria) {
+        return produtoService.listarPorCategoria(idcategoria);
     }
 }
