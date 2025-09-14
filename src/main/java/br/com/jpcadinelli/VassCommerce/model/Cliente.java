@@ -1,16 +1,20 @@
 package br.com.jpcadinelli.VassCommerce.model;
 
+import java.util.Date;
+
 public class Cliente {
     private Long id;
-    private String nome;
-    private String email;
+    private String cpf;
+    private String fotoUrl;
+    private Date DataNascimento;
 
     public Cliente() {}
 
-    public Cliente(Long id, String nome, String email) {
+    public Cliente(Long id, String cpf, String fotoUrl, Date dataNascimento) {
         this.id = id;
-        this.nome = nome;
-        this.email = email;
+        this.cpf = cpf;
+        this.fotoUrl = fotoUrl;
+        DataNascimento = dataNascimento;
     }
 
     public Long getId() {
@@ -21,19 +25,27 @@ public class Cliente {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public String getEmail() {
-        return email;
+    public String getFotoUrl() {
+        return fotoUrl;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setFotoUrl(String fotoUrl) {
+        this.fotoUrl = fotoUrl;
+    }
+
+    public Date getDataNascimento() {
+        return DataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        DataNascimento = dataNascimento;
     }
 }

@@ -9,8 +9,10 @@ public class ClienteService {
     private final List<Cliente> clientes = new ArrayList<>();
 
     public ClienteService() {
-        clientes.add(new Cliente(1L, "João Pedro", "joao@example.com"));
-        clientes.add(new Cliente(2L, "Maria Silva", "maria@example.com"));
+        clientes.add(new Cliente(1L, "123.234.345-45", "https://exemplo.com/foto-joao.jpg", new GregorianCalendar(1991, Calendar.JUNE, 22).getTime()));
+
+        clientes.add(new Cliente(2L, "987.654.321-00", "https://exemplo.com/foto-maria.jpg", new GregorianCalendar(1990, Calendar.JUNE, 22).getTime()
+        ));
     }
 
     public Optional<Cliente> buscarPorId(Long id) {
