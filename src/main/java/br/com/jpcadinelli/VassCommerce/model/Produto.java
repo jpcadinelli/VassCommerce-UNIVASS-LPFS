@@ -10,12 +10,12 @@ public class Produto {
     private String fotoUrl;
     private Date dataCadastro;
     private Date dataUltimaAtualizacao;
-    private Long valorUnitario;
+    private Float valorUnitario;
     private Long idCategoria;
 
     public Produto() {}
 
-    public Produto(Long id, String nome, String descricao, String fotoUrl, Date dataCadastro, Date dataUltimaAtualizacao, Long valorUnitario, Long idCategoria) {
+    public Produto(Long id, String nome, String descricao, String fotoUrl, Date dataCadastro, Date dataUltimaAtualizacao, Float valorUnitario, Long idCategoria) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -68,10 +68,10 @@ public class Produto {
         this.dataUltimaAtualizacao = dataUltimaAtualizacao;
     }
 
-    public Long getValorUnitario() {
+    public Float getValorUnitario() {
         return valorUnitario;
     }
-    public void setValorUnitario(Long valorUnitario) {
+    public void setValorUnitario(Float valorUnitario) {
         this.valorUnitario = valorUnitario;
     }
 
@@ -80,9 +80,5 @@ public class Produto {
     }
     public void setIdCategoria(Long idCategoria) {
         this.idCategoria = idCategoria;
-    }
-
-    public List<ProdutoDto> ToResponse() {
-        // transformar produto em produtoDto
     }
 }

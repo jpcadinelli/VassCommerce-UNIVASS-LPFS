@@ -1,7 +1,9 @@
 package br.com.jpcadinelli.VassCommerce.controller;
 
 import br.com.jpcadinelli.VassCommerce.model.Categoria;
+import br.com.jpcadinelli.VassCommerce.model.Produto;
 import br.com.jpcadinelli.VassCommerce.service.CategoriaService;
+import br.com.jpcadinelli.VassCommerce.service.ProdutoService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -16,19 +16,19 @@ public class ProdutoService {
     public ProdutoService() {
         produtos.add(new Produto(1L, "Notebook Dell", "Notebook i7 com 16GB RAM",
                 "https://exemplo.com/notebook.jpg",
-                new Date(), new Date(), 450000L, 1L));
+                new Date(), new Date(), 4500.00F, 1L));
 
         produtos.add(new Produto(2L, "Smartphone Samsung", "Galaxy S22",
                 "https://exemplo.com/smartphone.jpg",
-                new Date(), new Date(), 320000L, 1L));
+                new Date(), new Date(), 3200.00F, 1L));
 
         produtos.add(new Produto(3L, "Camiseta Polo", "Camiseta de algodão",
                 "https://exemplo.com/camiseta.jpg",
-                new Date(), new Date(), 12000L, 2L));
+                new Date(), new Date(), 120.00F, 2L));
 
         produtos.add(new Produto(4L, "Livro - Java para Iniciantes", "Livro de programação",
                 "https://exemplo.com/livro.jpg",
-                new Date(), new Date(), 9000L, 3L));
+                new Date(), new Date(), 90.00F, 3L));
     }
 
     // Listar produtos por categoria
