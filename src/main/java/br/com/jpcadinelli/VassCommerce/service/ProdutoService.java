@@ -42,5 +42,12 @@ public class ProdutoService {
     public List<Produto> listarTodos() {
         return produtos;
     }
+
+    public Optional<Produto> buscarPorId(Long id) {
+        return produtos.stream()
+                .filter(p -> p.getId().equals(id))
+                .findFirst();
+    }
+
 }
 

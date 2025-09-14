@@ -27,4 +27,12 @@ public class ProdutoController {
     public List<Produto> listarTodosProdutos() {
         return produtoService.listarTodos();
     }
+
+    // GET /produto/{id} → carrega dados de um produto
+    @GetMapping("/produto/{id}")
+    public Produto buscarProdutoPorId(@PathVariable Long id) {
+        return produtoService.buscarPorId(id)
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado com id: " + id));
+    }
+
 }
