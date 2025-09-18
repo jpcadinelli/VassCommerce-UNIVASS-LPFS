@@ -49,5 +49,17 @@ public class ProdutoService {
                 .findFirst();
     }
 
+    // Adicionar novo produto
+    public Produto adicionarProduto(Produto produto) {
+        Long novoId = produtos.isEmpty() ? 1L : produtos.get(produtos.size() - 1).getId() + 1;
+        produto.setId(novoId);
+
+        produto.setDataCadastro(new Date());
+        produto.setDataUltimaAtualizacao(new Date());
+
+        produtos.add(produto);
+        return produto;
+    }
+
 }
 

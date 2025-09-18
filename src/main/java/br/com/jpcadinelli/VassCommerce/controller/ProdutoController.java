@@ -29,4 +29,9 @@ public class ProdutoController {
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado com id: " + id));
     }
 
+    // POST /produto → cadastrar novo produto
+    @PostMapping(value = "", consumes = "application/json", produces = "application/json")
+    public Produto cadastrarProduto(@RequestBody Produto produto) {
+        return produtoService.adicionarProduto(produto);
+    }
 }
