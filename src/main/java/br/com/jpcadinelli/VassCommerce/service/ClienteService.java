@@ -20,4 +20,17 @@ public class ClienteService {
                 .filter(c -> c.getId().equals(id))
                 .findFirst();
     }
+
+    public Cliente atualizarCliente(Long id, Cliente clienteAtualizado) {
+        return clientes.stream()
+                .filter(c -> c.getId().equals(id))
+                .findFirst()
+                .map(c -> {
+                    c.setCpf(clienteAtualizado.getCpf());
+                    c.setFotoUrl(clienteAtualizado.getFotoUrl());
+                    c.setDataNascimento(clienteAtualizado.getDataNascimento());
+                    return c;
+                })
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado com id: " + id));
+    }
 }

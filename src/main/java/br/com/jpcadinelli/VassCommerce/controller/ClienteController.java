@@ -31,4 +31,10 @@ public class ClienteController {
     public List<TipoCartao> buscarFormasDePagamento(@PathVariable Long id) {
         return cartaoService.buscarFormasDePagamento(id);
     }
+
+    @PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
+    public Cliente atualizarCliente(@PathVariable Long id, @RequestBody Cliente cliente) {
+        return clienteService.atualizarCliente(id, cliente);
+    }
+
 }
