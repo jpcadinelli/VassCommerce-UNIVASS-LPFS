@@ -29,9 +29,15 @@ public class CategoriaController {
         return categoriaService.listarTodas();
     }
 
-    // GET /categoria/{idcategoria}/produto → listar produtos da categoria
+    // GET /categoria/{idcategoria}/produto?nome=&valorMinimo=&valorMaximo=
     @GetMapping("/{idcategoria}/produto")
-    public List<Produto> listarProdutosPorCategoria(@PathVariable Long idcategoria) {
-        return produtoService.listarPorCategoria(idcategoria);
+    public List<Produto> listarProdutosFiltrados(
+            @PathVariable Long idcategoria,
+            @RequestParam(required = false) String nome,
+            @RequestParam(required = false) Float valorMinimo,
+            @RequestParam(required = false) Float valorMaximo
+    ) {
+        return produtoService.listarPorCategoria(idcategoria, nome, valorMinimo, valorMaximo);
     }
+
 }

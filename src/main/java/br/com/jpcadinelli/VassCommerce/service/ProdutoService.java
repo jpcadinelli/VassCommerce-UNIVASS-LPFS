@@ -31,9 +31,12 @@ public class ProdutoService {
                 new Date(), new Date(), 90.00F, 3L));
     }
 
-    public List<Produto> listarPorCategoria(Long categoriaId) {
+    public List<Produto> listarPorCategoria(Long categoriaId, String nome, Float valorMinimo, Float valorMaximo) {
         return produtos.stream()
                 .filter(p -> p.getIdCategoria().equals(categoriaId))
+                .filter(p -> nome == null || p.getNome().toLowerCase().contains(nome.toLowerCase()))
+                .filter(p -> valorMinimo == null || p.getValorUnitario() >= valorMinimo)
+                .filter(p -> valorMaximo == null || p.getValorUnitario() <= valorMaximo)
                 .toList();
     }
 
