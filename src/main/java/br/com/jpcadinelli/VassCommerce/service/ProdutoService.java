@@ -31,14 +31,12 @@ public class ProdutoService {
                 new Date(), new Date(), 90.00F, 3L));
     }
 
-    // Listar produtos por categoria
     public List<Produto> listarPorCategoria(Long categoriaId) {
         return produtos.stream()
                 .filter(p -> p.getIdCategoria().equals(categoriaId))
                 .toList();
     }
 
-    // Listar todos os produtos
     public List<Produto> listarTodos() {
         return produtos;
     }
@@ -49,7 +47,6 @@ public class ProdutoService {
                 .findFirst();
     }
 
-    // Adicionar novo produto
     public Produto adicionarProduto(Produto produto) {
         Long novoId = produtos.isEmpty() ? 1L : produtos.get(produtos.size() - 1).getId() + 1;
         produto.setId(novoId);
@@ -59,6 +56,22 @@ public class ProdutoService {
 
         produtos.add(produto);
         return produto;
+    }
+
+    public Produto atualizarProduto(Long id, Produto produtoAtualizado) {
+        return produtos.stream()
+                .filter(p -> p.getId().equals(id))
+                .findFirst()
+                .map(p -> {
+                    p.setNome(produtoAtualizado.getNome());
+                    p.setDescricao(produtoAtualizado.getDescricao());
+                    p.setFotoUrl(produtoAtualizado.getFotoUrl());
+                    p.setValorUnitario(produtoAtualizado.getValorUnitario());
+                    p.setIdCategoria(produtoAtualizado.getIdCategoria());
+                    p.setDataUltimaAtualizacao(new Date());
+                    return p;
+                })
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado com id: " + id));
     }
 
 }

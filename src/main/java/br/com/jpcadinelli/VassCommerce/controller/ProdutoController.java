@@ -34,4 +34,10 @@ public class ProdutoController {
     public Produto cadastrarProduto(@RequestBody Produto produto) {
         return produtoService.adicionarProduto(produto);
     }
+
+    @PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
+    public Produto atualizarProduto(@PathVariable Long id, @RequestBody Produto produto) {
+        return produtoService.atualizarProduto(id, produto);
+    }
+
 }
