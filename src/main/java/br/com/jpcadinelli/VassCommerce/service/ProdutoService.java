@@ -74,5 +74,12 @@ public class ProdutoService {
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado com id: " + id));
     }
 
+    public void deletarProduto(Long id) {
+        boolean removido = produtos.removeIf(p -> p.getId().equals(id));
+        if (!removido) {
+            throw new RuntimeException("Produto não encontrado com id: " + id);
+        }
+    }
+
 }
 
