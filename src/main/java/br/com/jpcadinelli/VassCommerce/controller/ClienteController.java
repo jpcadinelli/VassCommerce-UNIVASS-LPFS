@@ -37,4 +37,8 @@ public class ClienteController {
         return clienteService.atualizarCliente(id, cliente);
     }
 
+    @DeleteMapping(value = "/{id}", produces = "application/json")
+    public void deletarCliente(@PathVariable Long id) {
+        clienteService.deletarCliente(id);
+    }
 }
