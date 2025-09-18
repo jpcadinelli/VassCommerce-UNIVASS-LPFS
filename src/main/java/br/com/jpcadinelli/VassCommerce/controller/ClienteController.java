@@ -1,5 +1,6 @@
 package br.com.jpcadinelli.VassCommerce.controller;
 
+import br.com.jpcadinelli.VassCommerce.model.Cartao;
 import br.com.jpcadinelli.VassCommerce.model.Cliente;
 import br.com.jpcadinelli.VassCommerce.model.TipoCartao;
 import br.com.jpcadinelli.VassCommerce.service.CartaoService;
@@ -20,16 +21,10 @@ public class ClienteController {
         this.cartaoService = cartaoService;
     }
 
-    // GET /cliente/{id} → carrega dados de um cliente
     @GetMapping("/{id}")
     public Cliente buscarClientePorId(@PathVariable Long id) {
         return clienteService.buscarPorId(id)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado com id: " + id));
-    }
-
-    @GetMapping("/{id}/formas-de-pagamento")
-    public List<TipoCartao> buscarFormasDePagamento(@PathVariable Long id) {
-        return cartaoService.buscarFormasDePagamento(id);
     }
 
     @PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
@@ -40,5 +35,32 @@ public class ClienteController {
     @DeleteMapping(value = "/{id}", produces = "application/json")
     public void deletarCliente(@PathVariable Long id) {
         clienteService.deletarCliente(id);
+    }
+
+    @GetMapping("/{idcliente}/formas-de-pagamento")
+    public List<Cartao> listarFormasDePagamento(@PathVariable Long idcliente) {
+        return cartaoService.listarPorCliente(idcliente);
+    }
+
+    @PostMapping(value = "/{idcliente}/formas-de-pagamento", consumes = "application/json", produces = "application/json")
+    public Cartao adicionarFormaDePagamento(@PathVariable Long idcliente, @RequestBody Cartao cartao) {
+        return cartaoService.adicionarCartao(idcliente, cartao);
+    }
+
+    @PutMapping(value = "/{idcliente}/formas-de-pagamento/{idformapagamento}", consumes = "application/json", produces = "application/json")
+    public Cartao atualizarFormaDePagamento(
+            @PathVariable Long idcliente,
+            @PathVariable Long idformapagamento,
+            @RequestBody Cartao cartao
+    ) {
+        return cartaoService.atualizarCartao(idcliente, idformapagamento, cartao);
+    }
+
+    @DeleteMapping("/{idcliente}/formas-de-pagamento/{idformapagamento}")
+    public void deletarFormaDePagamento(
+            @PathVariable Long idcliente,
+            @PathVariable Long idformapagamento
+    ) {
+        cartaoService.excluirCartao(idcliente, idformapagamento);
     }
 }

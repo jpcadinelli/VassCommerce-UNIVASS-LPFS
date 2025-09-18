@@ -21,13 +21,37 @@ public class CartaoService {
         cartoes.add(new Cartao(3L, 1L, 2, new Date(), false));
     }
 
-    public List<TipoCartao> buscarFormasDePagamento(Long id) {
+    public List<Cartao> listarPorCliente(Long idCliente) {
         return cartoes.stream()
-                .filter(c -> Objects.equals(c.getIdCliente(), id))
+                .filter(c -> Objects.equals(c.getIdCliente(), idCliente))
                 .filter(c -> Boolean.FALSE.equals(c.getExcluido()))
-                .map(Cartao::getTipoCartao)
-                .distinct()
-                .map(TipoCartao::new)
-                .collect(Collectors.toList());
+                .toList();
+    }
+
+    public Cartao adicionarCartao(Long idCliente, Cartao cartao) {
+        long novoId = cartoes.stream().mapToLong(Cartao::getId).max().orElse(0L) + 1;
+        cartao.setId(novoId);
+        cartao.setIdCliente(idCliente);
+        cartoes.add(cartao);
+        return cartao;
+    }
+
+    public Cartao atualizarCartao(Long idCliente, Long idCartao, Cartao atualizado) {
+        Cartao cartao = cartoes.stream()
+                .filter(c -> c.getId().equals(idCartao) && c.getIdCliente().equals(idCliente))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Cartão não encontrado"));
+
+        cartao.setTipoCartao(atualizado.getTipoCartao());
+        cartao.setDataCriacao(atualizado.getDataCriacao());
+        cartao.setExcluido(atualizado.getExcluido());
+        return cartao;
+    }
+
+    public void excluirCartao(Long idCliente, Long idCartao) {
+        cartoes.stream()
+                .filter(c -> c.getId().equals(idCartao) && c.getIdCliente().equals(idCliente))
+                .findFirst()
+                .ifPresent(c -> c.setExcluido(true));
     }
 }
